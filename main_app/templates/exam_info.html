@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
+    <title>Exam Info</title>
+</head>
+<h1>Exam Info</h1>
+<body>
+
+<form method="post">
+    <p>
+        First Name:
+        <input type="text" name="instructor_first_name">
+        Last Name:
+        <input type="text" name="instructor_last_name">
+    </p>
+    <p>
+        Department (e.g., math, english, music, etc.):
+        <input type="text" name="department">
+    </p>
+    <p>
+        Course Name (e.g., precalculus, accounting, etc.):
+        <input type="text" name="course_name">
+    </p>
+    <p>
+        Course Number (e.g., 1010, 2220, etc.):
+        <input type="text" name="course_number">
+    </p>
+    <p>
+        Section Number (e.g., 001, 101, etc.)
+        <input type="text" name="section_number">
+    </p>
+    <p>
+        Number of students:
+        <input type="text" name="num_students">
+    </p>
+    <p>
+        Calculator:
+        <input type="text" name="calculator">
+        Notes/Books:
+        <input type="text" name="notes">
+    </p>
+    <p>
+        Computer Exam:
+        <input type="hidden" name="computer_exam" value="0">
+        <input type="checkbox" name="computer_exam" value="1">
+        Scantron:
+        <input type="hidden" name="scantron" value="0">
+        <input type="checkbox" name="scantron" value="1">
+        Timed:
+        <input type="hidden" name="timed" value="0">
+        <input type="checkbox" name="timed" value="1">
+        Dictionary:
+        <input type="hidden" name="dictionary" value="0">
+        <input type="checkbox" name="dictionary" value="1">
+    </p>
+    <p>
+        Start Date:
+        <input type="date" id="start" name="start_date"
+         value="2020-02-14" min="2020-01-01" max="2020-05-01">
+        End Date:
+        <input type="date" id="start" name="end_date"
+         value="2020-02-14" min="2020-01-01" max="2020-05-01">
+    </p>
+    <p>
+        Start Date:
+        <input type="date" id="start" name="late_start_date"
+         value="2020-02-14" min="2020-01-01" max="2020-05-01">
+        End Date:
+        <input type="date" id="start" name="late_end_date"
+         value="2020-02-14" min="2020-01-01" max="2020-05-01">
+    </p>
+    <p>
+        Additional comments:
+        <input type="text" name="comment">
+    </p>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
