@@ -10,7 +10,13 @@
 <h1>Exam Info</h1>
 <body>
 
-<form method="post">
+<form action="/get_exam_info/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Submit">
+</form>
+
+<!-- <form action="/exam_info/" method="post">
     <p>
         First Name:
         <input type="text" name="instructor_first_name">
@@ -79,7 +85,7 @@
     </p>
 
     <button type="submit">Submit</button>
-</form>
+</form> -->
 
 </body>
 </html>

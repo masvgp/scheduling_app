@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-#from models import Exam
+from .models import Exam, ExamForm
 
 
 # Create your views here.
@@ -8,67 +8,18 @@ def home(request):
     return HttpResponse('Home Page!')
 
 
-def exam_info(request):
-    # Variables for display on the rendered page.
-    # name = 'name'
-    # number = 1234
-    # context = {
-    #     'name': name,
-    #     'number': number
-    # }
+def get_exam_info(request):
+    '''View function gets exam info data from exam_info.html and pases it to ExamForm which passes the data to the Exam model which stores the data in the data base'''
+    if request.method == 'POST':
+        form = ExamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = ExamForm()
 
-    return render(request, 'exam_info.html')
+    return render(request, 'exam_info.html', {'form': form})
 
-
-# class Exam:
-#     def __init__(self, instructor_first_name, instructor_last_name,
-#                  course_name,
-#                  course_number,
-#                  num_students,
-#                  start_date,
-#                  end_date,
-#                  late_date_start,
-#                  late_date_end,
-#                  timed,
-#                  notes,
-#                  calculator,
-#                  dictionary,
-#                  comment):
-
-#         self.instructor_first_name = instructor_first_name
-#         self.instructor_last_name = instructor_last_name
-#         self.course_name = course_name
-#         self.course_number = course_number
-#         self.num_students = num_students
-#         self.start_date = start_date
-#         self.end_date = end_date
-#         self.late_date_start = late_date_start
-#         self.late_date_end = late_date_end
-#         self.timed = timed
-#         self.notes = notes
-#         self.calculator = calculator
-#         self.dictionary = dictionary
-#         self.comment = comment
-
-
-# exams = [
-#     Exam(
-#         'Mike',
-#         'Snyder',
-#         'calculus',
-#         1210,
-#         30,
-#         '2/20/20',
-#         '2/21/20',
-#         'none',
-#         'none',
-#         False,
-#         False,
-#         True,
-#         True,
-#         'This is an example.'
-#     )
-# ]
 
 # def exam_info(request):
 #     if request.method == "Post":
