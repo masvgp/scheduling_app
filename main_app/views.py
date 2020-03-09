@@ -11,14 +11,14 @@ def home(request):
 def get_exam_info(request):
     '''View function gets exam info data from exam_info.html and pases it to ExamForm which passes the data to the Exam model which stores the data in the data base'''
     if request.method == 'POST':
-        form = ExamForm(request.POST)
-        if form.is_valid():
-            form.save()
+        exam_form = ExamForm(request.POST)
+        if exam_form.is_valid():
+            exam_form.save()
             return HttpResponseRedirect('/')
     else:
-        form = ExamForm()
+        exam_form = ExamForm()
 
-    return render(request, 'exam_info.html', {'form': form})
+    return render(request, 'exam_info.html', {'exam_form': exam_form})
 
 
 # def exam_info(request):

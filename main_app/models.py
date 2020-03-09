@@ -1,6 +1,9 @@
 from django.db import models
 from django.forms import ModelForm
 
+# Import Date Picker modules
+from bootstrap_datepicker_plus import DatePickerInput
+
 
 # Create your models here.
 
@@ -21,8 +24,8 @@ class Exam(models.Model):
     dictionary = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField()
-    late_start_date = models.DateField(blank=True)
-    late_end_date = models.DateField(blank=True)
+    late_start_date = models.DateField(blank=True, null=True)
+    late_end_date = models.DateField(blank=True, null=True)
     comment = models.CharField(max_length=300, blank=True)
 
 
@@ -49,3 +52,13 @@ class ExamForm(ModelForm):
             'late_end_date',
             'comment'
         ]
+        widgets = {
+            'start_date': DatePickerInput(
+                options={
+                "disabledDates": ['03/10/2020', '03/11/2020']
+                }
+                ),
+            'end_date': DatePickerInput(),
+            'late_start_date': DatePickerInput(),
+            'late_end_date': DatePickerInput(),
+        }

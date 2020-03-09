@@ -1,4 +1,10 @@
 {% load static %}
+<!-- Load Bootstrap related libraries -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{{ exam_form.media }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +18,13 @@
 
 <form action="/get_exam_info/" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" name="Submit">
+    {% bootstrap_form exam_form %}
+    <!-- {{ form }} -->
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" name="Submit">
+        Submit
+    </button>
+    {% endbuttons %}
 </form>
 
 <!-- <form action="/exam_info/" method="post">
