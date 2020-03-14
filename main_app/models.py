@@ -55,10 +55,9 @@ class ExamForm(ModelForm):
         widgets = {
             'start_date': DatePickerInput(
                 options={
-                "disabledDates": ['03/10/2020', '03/11/2020']
-                }
-                ),
-            'end_date': DatePickerInput(),
-            'late_start_date': DatePickerInput(),
-            'late_end_date': DatePickerInput(),
+                    "disabledDates": ['03/10/2020', '03/11/2020']
+                }).start_of('regular days'),
+            'end_date': DatePickerInput().end_of('regular days'),
+            'late_start_date': DatePickerInput().start_of('late days'),
+            'late_end_date': DatePickerInput().end_of('late days'),
         }

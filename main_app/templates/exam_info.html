@@ -4,28 +4,51 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% bootstrap_messages %}
+{% load crispy_forms_tags %}
 {{ exam_form.media }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" > -->
+    <link rel="stylesheet" href="../static/style.css">
     <title>Exam Info</title>
+
 </head>
-<h1>Exam Info</h1>
+
 <body>
 
-<form action="/get_exam_info/" method="post">
-    {% csrf_token %}
-    {% bootstrap_form exam_form %}
-    <!-- {{ form }} -->
-    {% buttons %}
-    <button type="submit" class="btn btn-primary" name="Submit">
-        Submit
-    </button>
-    {% endbuttons %}
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+
+            <h1 class="mt-2"> Exam Info </h1>
+            <hr class="mt-0 mb-4">
+
+            <form action="/get_exam_info/" method="post">
+                {% csrf_token %}
+
+                {{ exam_form|crispy }}
+
+                <!--
+                We are using the crispy form template instead of this bootstrap form template
+                {% bootstrap_form exam_form %}
+                -->
+
+                {% buttons %}
+                <button type="submit" class="btn btn-primary" name="Submit">
+                    Submit
+                </button>
+                {% endbuttons %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 <!-- <form action="/exam_info/" method="post">
     <p>
