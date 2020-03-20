@@ -1,0 +1,21 @@
+{% load static %}
+<!-- Load Bootstrap related libraries -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% load crispy_forms_tags %}
+{{ exam_form.media }}
+{% block title %}
+    Exam Request 
+{% endblock %}
+
+{% block content %}
+
+    <blockquote>
+        <p>
+            {{ exam_request.instructor_first_name }}
+        </p>
+    </blockquote>
+
+{% endblock %}

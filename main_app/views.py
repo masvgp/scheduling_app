@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Exam, ExamForm
 from .models import Date, DateForm
 import datetime
@@ -50,3 +50,9 @@ def get_date_info(request):
         date_form = DateForm()
 
     return render(request, 'date_info.html', {'date_form': date_form})
+
+def test_request(request, id):
+    exam_request = get_object_or_404(Exam, pk=id)
+    return render(request, 'test_request.html', 
+    {'exam_request': exam_request}
+    )
