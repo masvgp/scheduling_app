@@ -5,7 +5,7 @@
 {% bootstrap_javascript jquery='full' %}
 {% bootstrap_messages %}
 {% load crispy_forms_tags %}
-{{ exam_form.media }}
+{{ date_form.media }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@
 <!--     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" > -->
     <link rel="stylesheet" href="../static/style.css">
-    <title>Exam Info</title>
+    <title>Exam Date Info</title>
 
 </head>
 
@@ -25,13 +25,13 @@
     <div class="row justify-content-center">
         <div class="col-8">
 
-            <h1 class="mt-2"> Exam Info </h1>
+            <h1 class="mt-2"> Exam Date Info </h1>
             <hr class="mt-0 mb-4">
 
-            <form action="/get_exam_info/" method="post">
+            <form action="/get_date_info/" method="post">
                 {% csrf_token %}
 
-                {{ exam_form|crispy }}
+                {{ date_form|crispy }}
 
                 {% buttons %}
                 <button type="submit" class="btn btn-primary" name="Submit">
