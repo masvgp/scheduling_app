@@ -51,8 +51,8 @@ def get_date_info(request):
 
     return render(request, 'date_info.html', {'date_form': date_form})
 
-def test_request(request, id):
-    exam_request = get_object_or_404(Exam, pk=id)
+def test_request(request):
+    exam_request = Exam.objects.all()
     return render(request, 'test_request.html', 
     {'exam_request': exam_request}
     )

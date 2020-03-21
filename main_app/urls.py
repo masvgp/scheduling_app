@@ -5,7 +5,7 @@ urlpatterns = [
     url(r'^$', views.home),
     url(r'exam_info', views.get_exam_info),
     url(r'date_info', views.get_date_info),
-    url(r'test_request/(?P<id>\d+)/$', 
+    url(r'test_request', 
         views.test_request,
         name="test_request"),
 ]

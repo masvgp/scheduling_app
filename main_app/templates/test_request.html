@@ -13,9 +13,28 @@
 {% block content %}
 
     <blockquote>
+        {% for exa in exam_request %}
         <p>
-            {{ exam_request.instructor_first_name }}
+            {{ exa.instructor_first_name }}
+            {{ exa.instructor_last_name }}
+            {{ exa.department }}
+            {{ exa.course_name }}
+            {{ exa.course_number }}
+            {{ exa.section_number}}
+            {{ exa.num_students}}
+            {{ exa.calculator }}
+            {{ exa.notes }}
+            {% if exa.computer_exam == True %}
+                Computer Exam
+            {% else %}
+                <p> </p>
+            {% endif %}
+            {{ exa.scantron }}
+            {{ exa.timed }}
+            {{ exa.dictionary }}
+            {{ exa.comment }}
         </p>
+        {% endfor %}
     </blockquote>
 
 {% endblock %}
