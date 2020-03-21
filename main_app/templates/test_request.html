@@ -26,13 +26,21 @@
             {{ exa.notes }}
             {% if exa.computer_exam == True %}
                 Computer Exam
-            {% else %}
-                <p> </p>
             {% endif %}
-            {{ exa.scantron }}
-            {{ exa.timed }}
-            {{ exa.dictionary }}
-            {{ exa.comment }}
+            {% if exa.sacntron == True %}
+                scantron Test
+            {% endif %}
+            {% if exa.timed == True %}
+                Timed Test
+            {% endif %}
+            
+            {% if exa.dictionary == True %}
+                Timed Test
+            {% endif %}
+
+            {% if exa.comment != NULL %}
+                {{ exa.comment }}
+            {% endif %}
         </p>
         {% endfor %}
     </blockquote>
