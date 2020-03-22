@@ -23,6 +23,7 @@ class Exam(models.Model):
     timed = models.BooleanField(default=False)
     dictionary = models.BooleanField(default=False)
     comment = models.CharField(max_length=300, blank=True)
+    test_accepted = models.BooleanField(default=False)
 
 
 class Date(models.Model):
