@@ -1,12 +1,14 @@
 from django.db import models
 from django.forms import ModelForm
+from django import forms
 
 # Import Date Picker modules
 from bootstrap_datepicker_plus import DatePickerInput
 
+dates_to_disable = []
+
 
 # Create your models here.
-
 
 class Exam(models.Model):
     instructor_first_name = models.CharField(max_length=30)
@@ -26,10 +28,20 @@ class Exam(models.Model):
 
 
 class Date(models.Model):
+    exam = models.OneToOneField(Exam,
+                                on_delete=models.CASCADE,
+                                primary_key=True
+                                )
     start_date = models.DateField()
     end_date = models.DateField()
     late_start_date = models.DateField(blank=True, null=True)
     late_end_date = models.DateField(blank=True, null=True)
+
+
+class DisableDates(models.Model):
+    date = models.DateField(default=0)
+    num_students = models.IntegerField(null=True, default=0)
+    disable_date = models.BooleanField(default=False)
 
 
 class ExamForm(ModelForm):
@@ -54,40 +66,24 @@ class ExamForm(ModelForm):
 
 
 class DateForm(ModelForm):
+
     class Meta:
         model = Date
+
         fields = [
+            'exam',
             'start_date',
             'end_date',
             'late_start_date',
             'late_end_date'
         ]
+        # exclude = ('exam',)
         widgets = {
             'start_date': DatePickerInput(
                 options={
-                    "disabledDates": ['03/10/2020', '03/11/2020']
+                    "disabledDates": dates_to_disable
                 }).start_of('regular days'),
             'end_date': DatePickerInput().end_of('regular days'),
             'late_start_date': DatePickerInput().start_of('late days'),
             'late_end_date': DatePickerInput().end_of('late days'),
         }
-
-    '''
-    The following __init__ and functions are used to create a
-    list of dates to be blocked out in the ExamForm
-    '''
-
-    # def __init__(self):
-    #     self.start_date = start_date
-    #     self.end_date = end_date
-
-    # def date_range_list(self, start_date, end_date):
-    # '''
-    # Create a list of dates for a given date range.
-    # '''
-    #     date_range_length = (self.end_date - self.start_date).days
-    #     date_list = [self.start_date, ]
-    #     for day in range(1, date_range_length + 1):
-    #         date_list.append(self.start_date + datetime.timedelta(day))
-
-    #     return date_list
