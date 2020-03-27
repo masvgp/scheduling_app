@@ -1,3 +1,5 @@
 from django.contrib import admin
+from main_app.models import Exam, Date
 
-# Register your models here.
+admin.site.register(Exam)
+admin.site.register(Date)
