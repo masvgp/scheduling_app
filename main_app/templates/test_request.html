@@ -9,49 +9,49 @@
     <body>
         <div>
             {% for exa in exam_request %}
-            <div class="request">
-                <!--{% if exa.test_accepted == False %}-->
-                    {% csrf_token %}
-                    <form action="/test_request/" method="post">
-                        <p>Instructor: {{ exa.instructor_first_name }} {{ exa.instructor_last_name }}</p>
-                        <p>Department: {{ exa.department }}</p>
-                        <p>{{ exa.course_name }}: {{ exa.course_number }}</p> 
-                        <p>Section Number: {{ exa.section_number}}</p>
-                        <p>Number of Students: {{ exa.num_students}}</p>
-                        <!--<p>Calculator: {{ exa.calculator }}</p>
-                        <p>Notes: {{ exa.notes }}</p>
-                        {% if exa.computer_exam == True %}
-                            <p>Computer Exam: Yes</p>
-                        {% else %}
-                        <p>Computer Exam: No</p>
-                        {% endif %}
-                        {% if exa.sacntron == True %}
-                            <p>Scantron Test: Yes</p>
-                        {% else %}
-                            <p>Scantron Test: No</p>
-                        {% endif %}
-                        {% if exa.timed == True %}
-                            <p>Timed Test: Yes</p>
-                        {% else %}
-                            <p>Timed Test: No</p>
-                        {% endif %}
-                        {% if exa.dictionary == True %}
-                            <p>Dictionary: Yes</p>
-                        {% else %}
-                            <p>Dictionary: Yes</p>
-                        {% endif %}
-                        {% if exa.comment != NULL %}
-                            <p>{{ exa.comment }}</p>
-                        {% endif %}-->
-                        <button type="submit" class="btn btn-primary" name="Accept">
-                            Accept
-                        </button>
-                        <button type="submit" class="btn btn-primary" name="Decline">
-                            Decline
-                        </button>
-                {% endif %} 
-            </div>
-            {% endfor %}
+                <div class="request">
+                    <!--{% if exa.test_accepted == False %}-->
+                        {% csrf_token %}
+                        <form action="/test_request/" method="post">
+                            <p>Instructor: {{ exa.instructor_first_name }} {{ exa.instructor_last_name }}</p>
+                            <p>Department: {{ exa.department }}</p>
+                            <p>{{ exa.course_name }}: {{ exa.course_number }}</p> 
+                            <p>Section Number: {{ exa.section_number}}</p>
+                            <p>Number of Students: {{ exa.num_students}}</p>
+                            <!--<p>Calculator: {{ exa.calculator }}</p>
+                            <p>Notes: {{ exa.notes }}</p>
+                            {% if exa.computer_exam == True %}
+                                <p>Computer Exam: Yes</p>
+                            {% else %}
+                            <p>Computer Exam: No</p>
+                            {% endif %}
+                            {% if exa.sacntron == True %}
+                                <p>Scantron Test: Yes</p>
+                            {% else %}
+                                <p>Scantron Test: No</p>
+                            {% endif %}
+                            {% if exa.timed == True %}
+                                <p>Timed Test: Yes</p>
+                            {% else %}
+                                <p>Timed Test: No</p>
+                            {% endif %}
+                            {% if exa.dictionary == True %}
+                                <p>Dictionary: Yes</p>
+                            {% else %}
+                                <p>Dictionary: Yes</p>
+                            {% endif %}
+                            {% if exa.comment != NULL %}
+                                <p>{{ exa.comment }}</p>
+                            {% endif %}-->
+                            <button type="submit" class="btn btn-primary" name="Accept">
+                                Accept
+                            </button>
+                            <button type="submit" class="btn btn-primary" name="Decline">
+                                Decline
+                            </button>
+                    <!--{% endif %}--> 
+                </div>
+                {% endfor %}
         </div>
     </body>
 </html>

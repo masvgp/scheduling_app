@@ -75,14 +75,14 @@ def get_date_info(request, id):
     return render(request, 'date_info.html', {'date_form': date_form})
 
 def test_request(request):
-    exam_request = Exam.objects.get(id=1)
-    if request.POST.get("Accept"):
-        Exam.test_accepted = True
-        return render(request, '/')
-    elif request.POST.get("Decline"):
-        return render(request, 'test_request.html', 
-                    {'exam_request': exam_request}
-                    )    
+    exam_request = Exam.objects.all()
+    #if request.POST.get("Accept"):
+     #   Exam.test_accepted = True
+      #  return render(request, '/')
+    #elif request.POST.get("Decline"):
+     #   return render(request, 'test_request.html', 
+                   # {'exam_request': exam_request}
+                    #)    
     return render(request, 'test_request.html', 
                 {'exam_request': exam_request}
                 )
