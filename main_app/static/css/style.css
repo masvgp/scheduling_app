@@ -1,0 +1,11 @@
+.request{
+    background-color: rgb(245, 245, 245);
+    border: 2px solid black;
+    border-radius: 5px;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
+    padding-bottom: 1%;
+}
+p{
+    padding-left: .5%;
+}

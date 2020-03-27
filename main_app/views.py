@@ -1,8 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+<<<<<<< HEAD
 from .models import Exam, ExamForm, Date, DateForm, DisableDates, dates_to_disable
 from datetime import datetime, timedelta
 from main_app.disable_dates import date_range_list, update_disabled_dates_db
+=======
+from .models import Exam, ExamForm
+from .models import Date, DateForm
+import datetime
+>>>>>>> acceptPage
 
 
 # Create your views here.
@@ -69,3 +75,16 @@ def get_date_info(request, id):
         date_form = DateForm()
 
     return render(request, 'date_info.html', {'date_form': date_form})
+
+def test_request(request):
+    exam_request = Exam.objects.get(id=1)
+    if request.POST.get("Accept"):
+        Exam.test_accepted = True
+        return render(request, '/')
+    elif request.POST.get("Decline"):
+        return render(request, 'test_request.html', 
+                    {'exam_request': exam_request}
+                    )    
+    return render(request, 'test_request.html', 
+                {'exam_request': exam_request}
+                )
