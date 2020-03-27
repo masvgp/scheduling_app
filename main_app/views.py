@@ -1,14 +1,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-<<<<<<< HEAD
 from .models import Exam, ExamForm, Date, DateForm, DisableDates, dates_to_disable
 from datetime import datetime, timedelta
 from main_app.disable_dates import date_range_list, update_disabled_dates_db
-=======
 from .models import Exam, ExamForm
 from .models import Date, DateForm
 import datetime
->>>>>>> acceptPage
+
 
 
 # Create your views here.
