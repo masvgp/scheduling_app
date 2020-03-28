@@ -29,10 +29,11 @@ class Exam(models.Model):
 
 
 class Date(models.Model):
-    exam = models.OneToOneField(Exam,
-                                on_delete=models.CASCADE,
-                                primary_key=True
-                                )
+    exam_id = models.IntegerField(default=0)
+    # exam = models.OneToOneField(Exam,
+    #                             on_delete=models.CASCADE,
+    #                             primary_key=True
+    #                             )
     start_date = models.DateField()
     end_date = models.DateField()
     late_start_date = models.DateField(blank=True, null=True)
@@ -68,17 +69,25 @@ class ExamForm(ModelForm):
 
 class DateForm(ModelForm):
 
+    def __init__(self, user_id = 1, *args, **kwargs): 
+        super(DateForm, self).__init__(*args, **kwargs)
+        self._id = user_id 
+
+    def get_id(self):
+        return self._id
+    def set_id(self, x):
+        self._id = x
+        
     class Meta:
         model = Date
 
         fields = [
-            'exam',
             'start_date',
             'end_date',
             'late_start_date',
             'late_end_date'
         ]
-        # exclude = ('exam',)
+        exclude = ('exam',)
         widgets = {
             'start_date': DatePickerInput(
                 options={
