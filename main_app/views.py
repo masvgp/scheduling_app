@@ -79,15 +79,15 @@ def test_request(request):
     test = Exam()
     if request.method == 'POST':
         if "Accept" in request.POST:
-            a = Exam.objects.get(pk = 7)
-            a.instructor_first_name = "doe"
+            a = Exam.objects.get(pk = 9)
+            a.test_accepted = True
             a.save()
             return render(request, 'test_request.html', 
                     {'exam_request': exam_request}
                     )
         elif "Decline" in request.POST:
             a = Exam.objects.get(pk = 8)
-            a.instructor_first_name = "jim"
+            a.test_accepted = False
             a.save()
             return render(request, 'test_request.html', 
                     {'exam_request': exam_request}
