@@ -76,17 +76,22 @@ def get_date_info(request, id):
 
 def test_request(request):
     exam_request = Exam.objects.all()
+    test = Exam()
     if request.method == 'POST':
-        a = Exam.objects.get(pk = 1)
-        a.instructor_first_name = "Lloyd"
-        a.save()
-        return render(request, 'test_request.html', 
-                {'exam_request': exam_request}
-                )
-    # elif request.POST.get("Decline"):
-    #     return render(request, 'test_request.html', 
-    #                 {'exam_request': exam_request}
-    #                 )    
+        if "Accept" in request.POST:
+            a = Exam.objects.get(pk = 7)
+            a.instructor_first_name = "doe"
+            a.save()
+            return render(request, 'test_request.html', 
+                    {'exam_request': exam_request}
+                    )
+        elif "Decline" in request.POST:
+            a = Exam.objects.get(pk = 8)
+            a.instructor_first_name = "jim"
+            a.save()
+            return render(request, 'test_request.html', 
+                    {'exam_request': exam_request}
+                    )              
     return render(request, 'test_request.html', 
                 {'exam_request': exam_request}
                 )

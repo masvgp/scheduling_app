@@ -16,8 +16,8 @@
     <body>
         <div>
             {% for exa in exam_request %}
+            {% if exa.test_accepted == False %}
                 <div class="request">
-                    {% if exa.test_accepted == False %}
                         {% csrf_token %}
                         {{ crispy }}
                         <form action="/test_request/" method="post">
@@ -53,8 +53,11 @@
                                 <p>{{ exa.comment }}</p>
                             {% endif %}-->
                             {% buttons %}
-                            <button type="submit" class="btn btn-primary" name="Submit">
-                                Submit
+                            <button type="submit" class="btn btn-primary" name="Accept">
+                                Accept
+                            </button>
+                            <button type="submit" class="btn btn-primary" name="Decline">
+                                Decline
                             </button>
                             {% endbuttons %}
                     {% endif %}
