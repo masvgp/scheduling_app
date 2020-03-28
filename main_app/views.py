@@ -79,7 +79,9 @@ def test_request(request):
     test = Exam()
     if request.method == 'POST':
         if "Accept" in request.POST:
-            a = Exam.objects.get(pk = 9)
+            test = request.POST.get('Accept')
+            print(test)
+            a = Exam.objects.get(pk = test)
             a.test_accepted = True
             a.save()
             return render(request, 'test_request.html', 
