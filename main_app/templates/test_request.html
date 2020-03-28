@@ -1,4 +1,11 @@
 {% load static %}
+<!-- Load Bootstrap related libraries -->
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% load crispy_forms_tags %}
+{{ exam_form.media }}
 <!Doctype html>
 <html>
     <head>
@@ -10,9 +17,11 @@
         <div>
             {% for exa in exam_request %}
                 <div class="request">
-                    <!--{% if exa.test_accepted == False %}-->
+                    {% if exa.test_accepted == False %}
                         {% csrf_token %}
+                        {{ crispy }}
                         <form action="/test_request/" method="post">
+                            <p>ID: {{ exa.id }}</p>
                             <p>Instructor: {{ exa.instructor_first_name }} {{ exa.instructor_last_name }}</p>
                             <p>Department: {{ exa.department }}</p>
                             <p>{{ exa.course_name }}: {{ exa.course_number }}</p> 
@@ -43,13 +52,12 @@
                             {% if exa.comment != NULL %}
                                 <p>{{ exa.comment }}</p>
                             {% endif %}-->
-                            <button type="submit" class="btn btn-primary" name="Accept">
-                                Accept
+                            {% buttons %}
+                            <button type="submit" class="btn btn-primary" name="Submit">
+                                Submit
                             </button>
-                            <button type="submit" class="btn btn-primary" name="Decline">
-                                Decline
-                            </button>
-                    <!--{% endif %}--> 
+                            {% endbuttons %}
+                    {% endif %}
                 </div>
                 {% endfor %}
         </div>
