@@ -78,6 +78,7 @@ def get_date_info(request):
     return render(request, 'date_info.html', {'date_form': date_form, 'user.id': user_id })
 
 def test_request(request):
+    #test
     exam_request = Exam.objects.all()
     test = Exam()
     if request.method == 'POST':
