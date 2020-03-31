@@ -67,7 +67,14 @@ class ExamForm(ModelForm):
 
 
 class DateForm(ModelForm):
+    def __init__(self, user_id = 1, *args, **kwargs): 
+        super(DateForm, self).__init__(*args, **kwargs)
+        self._id = user_id 
 
+    def get_id(self):
+        return self._id
+    def set_id(self, x):
+        self._id = x
     class Meta:
         model = Date
 
@@ -78,7 +85,7 @@ class DateForm(ModelForm):
             'late_start_date',
             'late_end_date'
         ]
-        # exclude = ('exam',)
+        exclude = ('exam',)
         widgets = {
             'start_date': DatePickerInput(
                 options={
@@ -87,4 +94,4 @@ class DateForm(ModelForm):
             'end_date': DatePickerInput().end_of('regular days'),
             'late_start_date': DatePickerInput().start_of('late days'),
             'late_end_date': DatePickerInput().end_of('late days'),
-        }
+}

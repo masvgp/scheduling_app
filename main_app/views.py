@@ -33,31 +33,33 @@ def get_exam_info(request):
         if exam_form.is_valid():
             exam_form.save()
             print(exam_instance)
+            user_id = exam_instance.id
+            print('exam form')
+            print(user_id)
 
             ''' Put function here that passes data from "exam_form" to confirmation page '''
             date_form = DateForm()
-            return render(request, 'date_info.html', {'date_form': date_form})
+            date_form.set_id(user_id)
+            return render(request, 'date_info.html', {'date_form': date_form, 'user_id': user_id})
     else:
         exam_form = ExamForm()
 
     return render(request, 'exam_info.html', {'exam_form': exam_form})
 
 
-def get_date_info(request, id):
-    get_id = get_object_or_404(Exam, pk=id)
-    print(get_id)
+def get_date_info(request):
     # dates_to_disable.append('03/31/2020')
     # print(dates_to_disable)
     if request.method == 'POST':
         date_instance = Date()
         date_form = DateForm(request.POST, instance=date_instance)
-
+        print('date form')
+        user_id = date_form.get_id()
+        print(user_id)
         if date_form.is_valid():
             # cleaned_form = date_form.cleaned_data
             # print(cleaned_form)
             date_form.save()
-            print(date_instance)
-
             # The following outputs the list of days from start date to end date given by the user
             # request_post_copy = request.POST.copy()
             # current_user_dates = date_range_list(request_post_copy)
@@ -66,27 +68,34 @@ def get_date_info(request, id):
             # for day in current_user_dates:
             #     update_disabled_dates_db(day, request_post_copy)
             # print(request_post_copy)
-
-            return HttpResponseRedirect('/')
+            print('date form')
+            return HttpResponse('Home Page!')
 
     else:
         date_form = DateForm()
 
-    return render(request, 'date_info.html', {'date_form': date_form})
+    return render(request, 'date_info.html', {'date_form': date_form, 'user.id': user_id })
 
 def test_request(request):
     exam_request = Exam.objects.all()
+    test = Exam()
     if request.method == 'POST':
-        a = Exam.objects.get(pk = 1)
-        a.instructor_first_name = "Mckinnin"
-        a.save()
-        return render(request, 'test_request.html', 
-                {'exam_request': exam_request}
-                )
-    # elif request.POST.get("Decline"):
-    #     return render(request, 'test_request.html', 
-    #                 {'exam_request': exam_request}
-    #                 )    
+        if "Accept" in request.POST:
+            test = request.POST.get('Accept')
+            print(test)
+            a = Exam.objects.get(pk = test)
+            a.test_accepted = True
+            a.save()
+            return render(request, 'test_request.html', 
+                    {'exam_request': exam_request}
+                    )
+        elif "Decline" in request.POST:
+            a = Exam.objects.get(pk = 8)
+            a.test_accepted = False
+            a.save()
+            return render(request, 'test_request.html', 
+                    {'exam_request': exam_request}
+                    )              
     return render(request, 'test_request.html', 
                 {'exam_request': exam_request}
                 )
