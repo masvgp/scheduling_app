@@ -29,15 +29,6 @@ class Exam(models.Model):
     comment = models.CharField(max_length=300, blank=True)
     test_accepted = models.BooleanField(default=False)
 
-    def __str__(self):
-        for i in Exam.objects.raw('Select * from main_app_exam where test_accepted == True'):
-            AcceptedExams.objects.raw('INSERT INTO main_app_acceptedexams(instructor_first_name, instructor_last_name, department, course_name, course_number, section_number, num_students, calculator, notes, computer_exam, scantron, timed, dictionary, comment, test_accepted) VALUES (' + i.instructor_first_name + 
-            ',' + i.instructor_last_name + ',' + i.department + ',' + i.course_name + ',' + i.course_number + ',' + 
-            i.section_number + ',' + i.num_students + ',' + i.calculator + ',' + i.notes + ',' + i.computer_exam + ',' +
-            i.scantron + ',' + i.timed + ',' + i.dictionary + ',' + i.comment + ',' + i.test_accepted + ')')
-        return "{0}".format(
-            self.course_name)
-
 
 class AcceptedExams(models.Model):
     instructor_first_name = models.CharField(max_length=30)
@@ -57,11 +48,11 @@ class AcceptedExams(models.Model):
     test_accepted = models.BooleanField(default=False)
 
 class Date(models.Model):
-    exam = models.OneToOneField(Exam,
-                                on_delete=models.CASCADE,
-                                primary_key=True,
-                                default=True
-                                )
+    # exam = models.OneToOneField(Exam,
+    #                             on_delete=models.CASCADE,
+    #                             primary_key=True,
+    #                             default=True
+    #                             )
     start_date = models.DateField()
     end_date = models.DateField()
     late_start_date = models.DateField(blank=True, null=True)
@@ -108,13 +99,11 @@ class DateForm(ModelForm):
         model = Date
 
         fields = [
-            'exam',
             'start_date',
             'end_date',
             'late_start_date',
             'late_end_date'
         ]
-        exclude = ('exam',)
         widgets = {
             'start_date': DatePickerInput(
                 options={

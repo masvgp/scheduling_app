@@ -39,7 +39,7 @@ def update_disabled_dates_db(day, request_post_copy):
     disabled_dates_db = DisableDates.objects.all()
     exam_db = Exam.objects.all()
     current_user_record = request_post_copy
-    current_user_num_students = exam_db.get(id=current_user_record.get('Exam_id')).num_students  # Currently this is wrong... the id is unfortunately not passed on to the subsequent 'child' forms from the 'parent' until database changes are commited, which doesn't happen till after a post request.
+    #current_user_num_students = exam_db.get(id=current_user_record.get('Exam_id')).num_students  # Currently this is wrong... the id is unfortunately not passed on to the subsequent 'child' forms from the 'parent' until database changes are commited, which doesn't happen till after a post request.
     prior_num_students_on_date = disable_dates_db.get(date=day).num_students
 
     if disable_dates_db.filter(date=day):
