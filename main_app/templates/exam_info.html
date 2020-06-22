@@ -5,7 +5,7 @@
 {% bootstrap_javascript jquery='full' %}
 {% bootstrap_messages %}
 {% load crispy_forms_tags %}
-{{ exam_form.media }}
+{{ form.media }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +19,8 @@
 
 </head>
 
+
+
 <body>
 
 <div class="container">
@@ -31,7 +33,7 @@
             <form action="/get_exam_info/" method="post">
                 {% csrf_token %}
 
-                {{ exam_form|crispy }}
+                {{ form|crispy }}
 
                 {% buttons %}
                 <button type="submit" class="btn btn-primary" name="Submit">
